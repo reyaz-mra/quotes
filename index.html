@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Quotes Website</title>
+</head>
+<body>
+    <div class="box">
+        <div class="qts"><i class="fa-solid fa-quote-left"></i></div>
+        <div id="quotes"></div>
+        <div id="author"></div>
+        <button id="newQ">New Quotes</button>
+    </div>
+
+    <script>
+        const quotes = document.getElementById("quotes");
+        const author = document.getElementById("author");
+        const newQ = document.getElementById("newQ");
+        let dataJson = "";
+        let quotesData = "";
+        const getNewQuote = () =>{
+            let rnum = Math.floor(Math.random() * 1600);
+            //console.log(dataJson[rnum].text);
+            quotesData = dataJson[rnum];
+            quotes.innerHTML = dataJson[rnum].text;
+            author.innerHTML = "By: "+dataJson[rnum].author;
+            if(quotesData.author==null){
+                author.innerHTML = "By: unknown";
+            }
+        }
+        const getQuotes = async () =>{
+            const api = "https://type.fit/api/quotes";
+            try{
+                let data = await fetch(api);
+                dataJson = await data.json();
+                // console.log(dataJson[0].text);
+                getNewQuote();
+            } catch (error){}
+        };
+        newQ.addEventListener("click",getNewQuote);
+        getQuotes();
+    </script>
+</body>
+</html>
