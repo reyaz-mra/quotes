@@ -14,6 +14,12 @@ body{
     padding: 10px;
     top: 110px;
 }
+.box #image img{
+    height: 50px;
+    width: auto;
+    float: right;  
+    margin-right: 1rem;
+}
 .qts{
     font-size: 7rem;
     color: #5f9ea08f;
