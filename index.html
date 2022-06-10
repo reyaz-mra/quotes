@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
     integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Quotes Website</title>
+    <title>Quotes Website By Reyaz</title>
 </head>
 <body>
     <div class="box">
+        <div id="image">
+            <img src="images/twitt.png" alt="">
+        </div>
         <div class="qts"><i class="fa-solid fa-quote-left"></i></div>
         <div id="quotes"></div>
         <div id="author"></div>
@@ -21,8 +24,13 @@
         const quotes = document.getElementById("quotes");
         const author = document.getElementById("author");
         const newQ = document.getElementById("newQ");
+        const tweetMe = document.getElementById("image");
         let dataJson = "";
         let quotesData = "";
+        const tweetNow = () =>{
+            let tweetPost = `https://twitter.com/intent/tweet?text=${quotesData.text}`;
+            window.open(tweetPost);
+        }
         const getNewQuote = () =>{
             let rnum = Math.floor(Math.random() * 1600);
             //console.log(dataJson[rnum].text);
@@ -42,6 +50,7 @@
                 getNewQuote();
             } catch (error){}
         };
+        tweetMe.addEventListener("click",tweetNow);
         newQ.addEventListener("click",getNewQuote);
         getQuotes();
     </script>
